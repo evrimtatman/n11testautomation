@@ -4,8 +4,8 @@
 
     <test name="Chrome Tests">
         <parameter name="browser" value="Chrome"/>
-        <parameter name="username" value="astroboy_41@hotmail.com"/>
-        <parameter name="password" value="Q33nyhndblt"/>
+        <parameter name="username" value="username"/>
+        <parameter name="password" value="password"/>
         <parameter name="searchKey" value="Lacoste"/>
         <classes>
             <class name="cases.KloiaN11Test">
