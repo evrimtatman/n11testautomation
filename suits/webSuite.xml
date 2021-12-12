@@ -19,13 +19,17 @@
     </test>
     <!-- <test name="Firefox test">
          <parameter name="browser" value="Firefox"/>
-         <classes>
-             <class name="tests.TestngExample">
-                 <methods>
-                     <include name="test1"/>
-                     <include name="test2"/>
-                 </methods>
-             </class>
-         </classes>
+        <parameter name="username" value="username"/>
+        <parameter name="password" value="password"/>
+        <parameter name="searchKey" value="Lacoste"/>
+        <classes>
+            <class name="cases.KloiaN11Test">
+                <methods>
+                    <include name="goN11HomePageAndLoginToFacebookViaGivenCredentials"/>
+                    <include name="clickCosmeticAndPersonalCareSectionSelectSeventhProductFromListThenAddToMyFavorites"/>
+                    <include name="writeFooterLinksToTxtFileAndCompareLinksUnderBrandsSection"/>
+                </methods>
+            </class>
+        </classes>
      </test>-->
 </suite>
