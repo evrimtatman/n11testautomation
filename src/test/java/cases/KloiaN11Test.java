@@ -15,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -30,6 +32,7 @@ public class KloiaN11Test {
     @BeforeTest
     @Parameters({"browser"})
     public void initializeDriver(String browser) {
+        Reporter.log("Drivers initializing ");
         if (browser.contains("Chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
@@ -49,6 +52,7 @@ public class KloiaN11Test {
     @Test
     @Parameters({"username", "password"})
     public void goN11HomePageAndLoginToFacebookViaGivenCredentials(String username, String password) {
+        Reporter.log("Method : goN11HomePageAndLoginToFacebookViaGivenCredentials");
         N11HomePage homePage = new N11HomePage(driver);
         homePage.goToHomePage();
         homePage.waitUntilTheLoginButtonAppears();
@@ -70,6 +74,7 @@ public class KloiaN11Test {
     @Test
     @Parameters({"searchKey"})
     public void clickCosmeticAndPersonalCareSectionSelectSeventhProductFromListThenAddToMyFavorites(String searchKey) {
+        Reporter.log("Method : clickCosmeticAndPersonalCareSectionSelectSeventhProductFromListThenAddToMyFavorites");
         N11HomePage homePage = new N11HomePage(driver);
         homePage.goToHomePage();
         homePage.waitUntilTheLogoutButtonAppears();
@@ -105,6 +110,7 @@ public class KloiaN11Test {
 
     @Test
     public void writeFooterLinksToTxtFileAndCompareLinksUnderBrandsSection() {
+        Reporter.log("Method : writeFooterLinksToTxtFileAndCompareLinksUnderBrandsSection");
         N11HomePage homePage = new N11HomePage(driver);
         homePage.goToHomePage();
         homePage.waitUntilTheLogoutButtonAppears();
@@ -114,12 +120,17 @@ public class KloiaN11Test {
         homePage.goToBrandsPage();
         homePage.waitUntilTheLogoutButtonAppears();
 
-        N11BrandPage brandPage=new N11BrandPage(driver);
+        N11BrandPage brandPage = new N11BrandPage(driver);
         List<String> allLinksOnFooterOnBrandPage = brandPage.findAllLinksOnFooter();
         List<String> homePageFooterLinks = TestUtil.readFile();
 
-        Assert.assertEquals(homePageFooterLinks,allLinksOnFooterOnBrandPage);
+        Assert.assertEquals(homePageFooterLinks, allLinksOnFooterOnBrandPage);
 
     }
 
+    @AfterTest
+    public void terminateBrowser() {
+        Reporter.log("Tests have been finished  browser terminating");
+        driver.close();
+    }
 }
